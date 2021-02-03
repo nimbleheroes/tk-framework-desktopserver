@@ -11,6 +11,9 @@
 # Constants here are in use in api_v2. The legacy api_v1 does not currently
 # make use of them.
 import os
+import sgtk
+
+this_framework = sgtk.platform.current_bundle()
 
 # RPC return codes.
 SUCCESSFUL_LOOKUP = 0
@@ -43,9 +46,12 @@ PUBLISHED_FILE_ENTITY = "PublishedFile"
 # forms the list of entity types that we provide action menu items
 # for. Any entity type requesting action menu items that is not in
 # the whitelist is informed that none will be provided.
-BASE_ENTITY_TYPE_WHITELIST = set(
-    ["Project", PUBLISHED_FILE_ENTITY, "Sequence", "Task", "Version",]
+BASE_ENTITY_TYPE_ALLOW_LIST = set(
+    ["Project", PUBLISHED_FILE_ENTITY, "Sequence", "Task", "Version", ]
 )
+
+BASE_ENTITY_TYPE_ALLOW_LIST.update(this_framework.get_setting("add_ami_entities"))
+
 
 # The execute_command.py script creates a custom log handler that
 # logs messages to stdout. Each message is prefixed with a known
