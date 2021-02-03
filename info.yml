@@ -16,6 +16,12 @@ configuration:
         type: hook
         description: Hook for customizing some aspects of Toolkit's integration with the Shotgun web app.
         default_value: '{self}/browser_integration.py'
+    add_ami_entities:
+        type: list
+        values:
+            type: str
+        description: Additional entity types to allow launching action menu items for.
+        default_value: []
 
 # the Shotgun fields that this engine needs in order to operate correctly
 requires_shotgun_fields:
